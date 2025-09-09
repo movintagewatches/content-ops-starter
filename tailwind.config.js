@@ -1,4 +1,4 @@
-// tailwind.config.js (or tailwind.config.cjs)
+// tailwind.config.js
 const plugin = require('tailwindcss/plugin');
 const themeStyle = require('./content/data/style.json');
 
@@ -13,9 +13,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      boxShadow: {
-        header: '0px 2px 8px rgba(27, 32, 50, .08)'
-      },
+      boxShadow: { header: '0px 2px 8px rgba(27, 32, 50, .08)' },
       colors: {
         light: themeStyle.light,
         dark: themeStyle.dark,
@@ -23,14 +21,12 @@ module.exports = {
         neutralAlt: themeStyle.neutralAlt,
         primary: themeStyle.primary
       },
-      // 👇 map Tailwind families to your desired fonts
+      // >>> map to font NAMES (Option A), not CSS variables
       fontFamily: {
-        sans: ['Sansation', 'system-ui', 'sans-serif'],          // body
+        sans: ['Sansation', 'system-ui', 'sans-serif'],           // body
         serif: ['"Playfair Display"', 'serif']                    // headings
       },
-      gridTemplateColumns: {
-        16: 'repeat(16, minmax(0, 1fr))'
-      },
+      gridTemplateColumns: { 16: 'repeat(16, minmax(0, 1fr))' },
       gridColumnStart: { span4: 'span 4' },
       gridColumnEnd: { neg3: '-3', span4: 'span 4' },
       maxWidth: { sectionBody: '846px' },
@@ -43,6 +39,7 @@ module.exports = {
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {
+          // pulls "sans" or "serif" from content/data/style.json
           fontFamily: theme(`fontFamily.${themeStyle.fontBody}`)
         },
         'h1,h2,h3,h4,h5,h6,blockquote': {
