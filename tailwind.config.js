@@ -1,4 +1,3 @@
-// tailwind.config.js (or tailwind.config.cjs)
 const plugin = require('tailwindcss/plugin');
 const themeStyle = require('./content/data/style.json');
 
@@ -13,9 +12,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      boxShadow: {
-        header: '0px 2px 8px rgba(27, 32, 50, .08)'
-      },
+      boxShadow: { header: '0px 2px 8px rgba(27, 32, 50, .08)' },
       colors: {
         light: themeStyle.light,
         dark: themeStyle.dark,
@@ -23,42 +20,24 @@ module.exports = {
         neutralAlt: themeStyle.neutralAlt,
         primary: themeStyle.primary
       },
-      // ⬇️ Updated font mappings
+      // IMPORTANT: map Tailwind "sans/serif" to our CSS variables
       fontFamily: {
-        sans: ['Sansation', 'system-ui', 'sans-serif'],          // body font
-        serif: ['"Playfair Display"', 'serif']                    // headings font
+        sans: ['var(--font-body)'],
+        serif: ['var(--font-heading)'],
       },
-      gridTemplateColumns: {
-        16: 'repeat(16, minmax(0, 1fr))'
-      },
-      gridColumnStart: {
-        span4: 'span 4'
-      },
-      gridColumnEnd: {
-        neg3: '-3',
-        span4: 'span 4'
-      },
-      maxWidth: {
-        sectionBody: '846px'
-      },
-      padding: {
-        '2/3': '66.666%',
-        '3/4': '75%',
-        '9/16': '56.25%'
-      },
-      screens: {
-        xs: '480px'
-      },
-      width: {
-        formField: 'calc(50% - 1rem)'
-      }
+      gridTemplateColumns: { 16: 'repeat(16, minmax(0, 1fr))' },
+      gridColumnStart: { span4: 'span 4' },
+      gridColumnEnd: { neg3: '-3', span4: 'span 4' },
+      maxWidth: { sectionBody: '846px' },
+      padding: { '2/3': '66.666%', '3/4': '75%', '9/16': '56.25%' },
+      screens: { xs: '480px' },
+      width: { formField: 'calc(50% - 1rem)' }
     }
   },
   plugins: [
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {
-          // uses "sans" or "serif" as defined in content/data/style.json
           fontFamily: theme(`fontFamily.${themeStyle.fontBody}`)
         },
         'h1,h2,h3,h4,h5,h6,blockquote': {
