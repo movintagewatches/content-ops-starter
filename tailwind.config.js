@@ -1,3 +1,4 @@
+// tailwind.config.js (or tailwind.config.cjs)
 const plugin = require('tailwindcss/plugin');
 const themeStyle = require('./content/data/style.json');
 
@@ -12,7 +13,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      boxShadow: { header: '0px 2px 8px rgba(27, 32, 50, .08)' },
+      boxShadow: {
+        header: '0px 2px 8px rgba(27, 32, 50, .08)'
+      },
       colors: {
         light: themeStyle.light,
         dark: themeStyle.dark,
@@ -20,12 +23,14 @@ module.exports = {
         neutralAlt: themeStyle.neutralAlt,
         primary: themeStyle.primary
       },
-      // IMPORTANT: map Tailwind "sans/serif" to our CSS variables
+      // 👇 map Tailwind families to your desired fonts
       fontFamily: {
-        sans: ['var(--font-body)'],
-        serif: ['var(--font-heading)'],
+        sans: ['Sansation', 'system-ui', 'sans-serif'],          // body
+        serif: ['"Playfair Display"', 'serif']                    // headings
       },
-      gridTemplateColumns: { 16: 'repeat(16, minmax(0, 1fr))' },
+      gridTemplateColumns: {
+        16: 'repeat(16, minmax(0, 1fr))'
+      },
       gridColumnStart: { span4: 'span 4' },
       gridColumnEnd: { neg3: '-3', span4: 'span 4' },
       maxWidth: { sectionBody: '846px' },
